@@ -10,7 +10,7 @@ namespace Threads
     {
         static void Main(string[] args)
         {
-
+            Console.ReadLine();
         }
     }
 }
