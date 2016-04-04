@@ -4,7 +4,10 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace EventHandling
+namespace ClientInvoice2
 {
-    delegate void MyEventHandler(Object sender, MyEvent e);
+    public class Customer : EntityBase
+    {
+        public string Name { get; set; }
+    }
 }

@@ -4,7 +4,11 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace EventHandling
+namespace Fluent
 {
-    delegate void MyEventHandler(Object sender, MyEvent e);
+    interface IFluent
+    {
+        IFluent Select();
+        IFluent Where();
+    }
 }
