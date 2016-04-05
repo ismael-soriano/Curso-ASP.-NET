@@ -13,7 +13,7 @@ namespace ClientInvoice2
             var customers = populateCostumers();
             var invoices = populateInvoices(customers);
 
-            var result = from invoice in invoices
+            var querySyntax = from invoice in invoices
                          join customer in customers on invoice.Customer.Id equals customer.Id
                          group invoice by customer into gb
                          select new
@@ -25,10 +25,10 @@ namespace ClientInvoice2
                          };
 
             Console.WriteLine("Query syntax");
-            foreach (var item in result)
+            foreach (var item in querySyntax)
                 Console.WriteLine(String.Format("Name: {0}, Invoices: {1}, Total amount: {2}", item.Name, item.Count, item.Amount));
 
-            var result2 = invoices.Join(customers, i => i.Customer.Id, c => c.Id, (i, c) => new
+            var methodSyntax = invoices.Join(customers, i => i.Customer.Id, c => c.Id, (i, c) => new
                 {
                     invoice = i,
                     customer = c
@@ -41,14 +41,53 @@ namespace ClientInvoice2
                     });
 
             Console.WriteLine("\nMethodSyntax");
-            foreach (var item in result2)
+            foreach (var item in methodSyntax)
                 Console.WriteLine(String.Format("Name: {0}, Invoices: {1}, Total amount: {2}", item.Name, item.Count, item.Amount));
 
             Console.WriteLine("\n");
 
-            var result3 = PagingExtensions.GetPage(invoices, 1, 3);
-            foreach (var item in result3)
+            var pages = PagingExtensions.GetPage(invoices, 1, 3);
+            foreach (var item in pages)
                 Console.WriteLine(item);
+
+            var customers2 = new List<Customer>() {
+                new Customer() {Id = 1, Name = "Miguel", Phone = "931236754"},
+                new Customer() {Id = 5, Name = "Adrian", Phone = "937653489"},
+                new Customer() {Id = 2, Name = "Roger", Phone = "934526374"},
+                new Customer() {Id = 3, Name = "Ares", Phone = "935675438"},
+                new Customer() {Id = 4, Name = "Carlos", Phone = "938675940"},
+            };
+
+            //var orderDescending = customers2.OrderByDescending(c => c.Phone).OrderBy(c => c.Name).OrderBy(c => c.Id);
+            var orderDescending = from customer in customers2
+                          orderby customer.Name, customer.Id ascending, customer.Phone descending
+                          select customer;
+
+            Console.WriteLine("\nOrder By");
+            foreach (var item in orderDescending)
+                Console.WriteLine(String.Format("ID: {0}, Name: {1}, Phone: {2}", item.Id, item.Name, item.Phone));
+
+            var a = "10";
+            var b = "2";
+
+            Console.WriteLine("\nComparación de cadenas");
+            var stringResultado = String.Empty;
+            if (String.Compare(a, b) > 0)
+                stringResultado = string.Concat(stringResultado, "Mayor cadena a");
+            else if (String.Compare(a, b) == 0)
+                stringResultado = string.Concat(stringResultado, "las cadenas son iguales");
+            else
+                stringResultado = string.Concat(stringResultado, "Mayor cadena b");
+            Console.WriteLine(stringResultado);
+
+            Console.WriteLine("\nCompare to");
+            customers2.Add(null);
+            customers2.Sort();
+            foreach (var item in customers2)
+            {
+                if (null != item)
+                Console.WriteLine(String.Format("ID: {0}, Name: {1}, Phone: {2}", item.Id, item.Name, item.Phone));
+            }
 
             Console.ReadLine();
         }
@@ -66,6 +105,7 @@ namespace ClientInvoice2
 
         public static List<Invoice> populateInvoices(List<Customer> customers)
         {
+            customers[0].Id = 40;
             return new List<Invoice>()
             {
                 new Invoice() { Id = 1, Customer = customers[0], Amount = 1000},

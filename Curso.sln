@@ -15,6 +15,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Fluent", "Fluent\Fluent.csp
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ClientInvoice2", "ClientInvoice2\ClientInvoice2.csproj", "{38B533E4-A76A-4404-896C-4704635BACC2}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PatronObserver", "PatronObserver\PatronObserver.csproj", "{24FC3DA8-FED3-4C6E-AB8F-7A5F063306D0}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -49,6 +51,10 @@ Global
 		{38B533E4-A76A-4404-896C-4704635BACC2}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{38B533E4-A76A-4404-896C-4704635BACC2}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{38B533E4-A76A-4404-896C-4704635BACC2}.Release|Any CPU.Build.0 = Release|Any CPU
+		{24FC3DA8-FED3-4C6E-AB8F-7A5F063306D0}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{24FC3DA8-FED3-4C6E-AB8F-7A5F063306D0}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{24FC3DA8-FED3-4C6E-AB8F-7A5F063306D0}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{24FC3DA8-FED3-4C6E-AB8F-7A5F063306D0}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
