@@ -14,9 +14,9 @@ namespace ContenedorDependencias
     {
         public override void Load()
         {
-            this.Bind<IController>().To<Controller>();
-            this.Bind<IService>().To<Service>();
-            this.Bind<IRepository>().To<Repository>();
+            this.Bind<IController>().To<Controller>().InTransientScope();
+            this.Bind<IService>().To<Service>().InThreadScope();
+            this.Bind<IRepository>().To<Repository>().InSingletonScope();
         }
     }
 }

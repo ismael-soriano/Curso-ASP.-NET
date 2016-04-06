@@ -10,6 +10,9 @@ namespace PatronObserver
     {
         static void Main(string[] args)
         {
+            var furnace = new Furnace();
+            var controller = new Controller(200);
+            //furnace.get
         }
     }
 }

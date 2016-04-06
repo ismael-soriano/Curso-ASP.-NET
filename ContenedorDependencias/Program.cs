@@ -30,7 +30,8 @@ namespace ContenedorDependencias
 
             controllerType.GetMethod("Add").Invoke(controller, new object[] { });*/
 
-            //RegisterDependencies();
+            RegisterDependencies();
+
             ResolveDependencies();
             Console.ReadLine();
         }
@@ -47,8 +48,8 @@ namespace ContenedorDependencias
 
         public static void ResolveDependencies()
         {
-            ContainerSetup containerSetup = new ContainerSetup();
-            IContainer container = containerSetup.BuildContainer();
+            ContainerSetup.instance.init();
+            IContainer container = ContainerSetup.instance.BuildContainer();
             container.Resolve<IController>().Add();
         }
     }

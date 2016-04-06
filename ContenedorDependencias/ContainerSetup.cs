@@ -12,13 +12,22 @@ namespace ContenedorDependencias
 {
     public class ContainerSetup
     {
+        public static ContainerSetup instance;
         private ContainerBuilder _builder;
+
+        private ContainerSetup() {}
+
+        public void init()
+        {
+            instance = new ContainerSetup();
+        }
+
         public IContainer BuildContainer()
         {
             _builder = new ContainerBuilder();
-            _builder.RegisterType<Repository>().As<IRepository>();
-            _builder.RegisterType<Service>().As<IService>();
-            _builder.RegisterType<Controller>().As<IController>();
+            _builder.RegisterType<Repository>().As<IRepository>().SingleInstance();
+            _builder.RegisterType<Service>().As<IService>().InstancePerDependency();
+            _builder.RegisterType<Controller>().As<IController>().InstancePerLifetimeScope();
             return _builder.Build();
         }
     }
