@@ -11,8 +11,7 @@ namespace PatronObserver1
     {
         static void Main(string[] args)
         {
-            IFurnaceFactory factory = new FurnaceFactory();
-            Furnace furnace = factory.GetFurnace();
+            Furnace furnace = new Furnace();
 
             var controller = new Controller("Controller 1", 150);
             var controller2 = new Controller("Controller 2", 200);
@@ -24,6 +23,9 @@ namespace PatronObserver1
 
             furnace.PropertyEvent += controller2.CheckValue;
             ChangeTemperature(furnace, 300);
+
+            furnace.PropertyEvent += controller.CheckValue;
+            ChangeTemperature(furnace, 800);
 
             Console.ReadLine();
         }

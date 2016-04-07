@@ -44,9 +44,7 @@
     <Compile Include="Controller.cs" />
     <Compile Include="Delegate.cs" />
     <Compile Include="Furnace.cs" />
-    <Compile Include="FurnaceFactory.cs" />
     <Compile Include="IController.cs" />
-    <Compile Include="IFurnaceFactory.cs" />
     <Compile Include="PropertyChangeEvent.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
