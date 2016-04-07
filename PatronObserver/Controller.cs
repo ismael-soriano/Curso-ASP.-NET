@@ -4,43 +4,23 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace PatronObserver
+namespace PatronObserver1
 {
-    class Controller : IObserver<FurnaceStatus>
+    public class Controller : IController
     {
-        private IDisposable unsubscriber;
+        private string _instName;
         private int _maxTemperature;
 
-        public Controller(int maxTemperature)
+        public Controller(string controllerName, int maxTemperature)
         {
+            _instName = controllerName;
             _maxTemperature = maxTemperature;
         }
 
-        public virtual void Subscribe(IObservable<FurnaceStatus> provider)
+        public void CheckValue(object sender, PropertyChangeEvent e)
         {
-            if (provider != null)
-                unsubscriber = provider.Subscribe(this);
-        }
-
-        public void OnCompleted()
-        {
-            Console.WriteLine();
-            this.Unsubscribe();
-        }
-
-        public void OnError(Exception error)
-        {
-            throw new NotImplementedException();
-        }
-
-        public void OnNext(FurnaceStatus value)
-        {
-            throw new NotImplementedException();
-        }
-
-        public virtual void Unsubscribe()
-        {
-            unsubscriber.Dispose();
+            if (e.NewValue > _maxTemperature)
+                throw new PropertyVetoException(String.Format("{0}: Se ha vetado un cambio de {1} a {2} porque sobrepasa el máximo de {3}.", _instName, e.OldValue, e.NewValue, _maxTemperature));
         }
     }
 }

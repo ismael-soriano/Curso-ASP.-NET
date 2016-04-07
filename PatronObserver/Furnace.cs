@@ -4,42 +4,41 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace PatronObserver
+namespace PatronObserver1
 {
-    public class Furnace : IObservable<FurnaceStatus>
+    public class Furnace
     {
-        public int Temperature {get; }
-        private List<IObserver<FurnaceStatus>> observers; 
-
-        public Furnace()
+        public event PropertyEventHandler PropertyEvent;
+        private const string PROP_TEMP = "Temperature";
+        
+        private int _temperature;
+        public int Temperature
         {
-            observers = new List<IObserver<FurnaceStatus>>();
-        }
-
-        public IDisposable Subscribe(IObserver<FurnaceStatus> observer)
-        {
-            if (!observers.Contains(observer))
-                observers.Add(observer);
-
-            return new Unsubscriber(observers, observer);
-        }
-
-        private class Unsubscriber : IDisposable
-        {
-            private List<IObserver<FurnaceStatus>> _observers;
-            private IObserver<FurnaceStatus> _observer;
-
-            public Unsubscriber(List<IObserver<FurnaceStatus>> observers, IObserver<FurnaceStatus> observer)
+            get
             {
-                this._observers = observers;
-                this._observer = observer;
+                return _temperature;
             }
 
-            public void Dispose()
+            set
             {
-                if (_observer != null && _observers.Contains(_observer))
-                    _observers.Remove(_observer);
+                try
+                {
+                    OnTemperatureChanged(new PropertyChangeEvent(PROP_TEMP, _temperature, value));
+
+                    _temperature = value;
+                }
+                catch (PropertyVetoException e)
+                {
+                    Console.WriteLine(e.Message);
+                }
             }
+        }
+
+        protected virtual void OnTemperatureChanged(PropertyChangeEvent e)
+        {
+            var handler = PropertyEvent;
+            if (null != handler)
+                handler(this, e);
         }
     }
 }

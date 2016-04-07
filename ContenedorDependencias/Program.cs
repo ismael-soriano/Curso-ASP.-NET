@@ -48,8 +48,7 @@ namespace ContenedorDependencias
 
         public static void ResolveDependencies()
         {
-            ContainerSetup.instance.init();
-            IContainer container = ContainerSetup.instance.BuildContainer();
+            IContainer container = ContainerSetup.Instance.BuildContainer();
             container.Resolve<IController>().Add();
         }
     }

@@ -12,15 +12,18 @@ namespace ContenedorDependencias
 {
     public class ContainerSetup
     {
-        public static ContainerSetup instance;
+        private static ContainerSetup instance;
+        public static ContainerSetup Instance {
+            get {
+                if (null == instance)
+                    instance = new ContainerSetup();
+
+                return instance;
+            }
+        }
         private ContainerBuilder _builder;
 
         private ContainerSetup() {}
-
-        public void init()
-        {
-            instance = new ContainerSetup();
-        }
 
         public IContainer BuildContainer()
         {

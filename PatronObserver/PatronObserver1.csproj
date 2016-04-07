@@ -7,7 +7,7 @@
     <ProjectGuid>{24FC3DA8-FED3-4C6E-AB8F-7A5F063306D0}</ProjectGuid>
     <OutputType>Exe</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>PatronObserver</RootNamespace>
+    <RootNamespace>PatronObserver1</RootNamespace>
     <AssemblyName>PatronObserver</AssemblyName>
     <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
@@ -42,10 +42,15 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Controller.cs" />
+    <Compile Include="Delegate.cs" />
     <Compile Include="Furnace.cs" />
-    <Compile Include="FurnaceStatus.cs" />
+    <Compile Include="FurnaceFactory.cs" />
+    <Compile Include="IController.cs" />
+    <Compile Include="IFurnaceFactory.cs" />
+    <Compile Include="PropertyChangeEvent.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="PropertyVetoException.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />

@@ -4,9 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace PatronObserver
+namespace PatronObserver1
 {
-    class FurnaceStatus
-    {
-    }
+    public delegate void PropertyEventHandler(Object sender, PropertyChangeEvent e);
 }
