@@ -20,7 +20,7 @@ namespace PatronObserver1
         public void CheckValue(object sender, PropertyChangeEvent e)
         {
             if (e.NewValue > _maxTemperature)
-                throw new PropertyVetoException(String.Format("{0}: Se ha vetado un cambio de {1} a {2} porque sobrepasa el máximo de {3}.", _instName, e.OldValue, e.NewValue, _maxTemperature));
+                throw new PropertyVetoException(String.Format("{0}: Se ha vetado un cambio de {1} de {2} a {3} porque sobrepasa el máximo de {4}.", _instName, e.Property, e.OldValue, e.NewValue, _maxTemperature));
         }
     }
 }

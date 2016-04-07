@@ -9,30 +9,33 @@ namespace PatronObserver1
 {
     class Program
     {
-        static Furnace furnace;
-
         static void Main(string[] args)
         {
             IFurnaceFactory factory = new FurnaceFactory();
-            furnace = factory.GetFurnace();
+            Furnace furnace = factory.GetFurnace();
 
             var controller = new Controller("Controller 1", 150);
             var controller2 = new Controller("Controller 2", 200);
 
             furnace.PropertyEvent += controller.CheckValue;
-            ChangeTemperature(120);
-            ChangeTemperature(200);
+            ChangeTemperature(furnace, 120);
+            ChangeTemperature(furnace, 200);
             furnace.PropertyEvent -= controller.CheckValue;
 
             furnace.PropertyEvent += controller2.CheckValue;
-            ChangeTemperature(300);
+            ChangeTemperature(furnace, 300);
 
             Console.ReadLine();
         }
 
-        private static void ChangeTemperature(int temperature)
+        private static void ChangeTemperature(Furnace furnace, int temperature)
         {
             furnace.Temperature = temperature;
+            PrintStatus(furnace);
+        }
+
+        private static void PrintStatus(Furnace furnace)
+        {
             Console.WriteLine(String.Format("Temperatura Horno: {0}\n", furnace.Temperature));
         }
     }
