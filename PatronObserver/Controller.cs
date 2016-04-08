@@ -9,18 +9,18 @@ namespace PatronObserver1
     public class Controller : IController
     {
         private string _instName;
-        private int _maxTemperature;
+        private int _maxValue;
 
-        public Controller(string controllerName, int maxTemperature)
+        public Controller(string controllerName, int maxValue)
         {
             _instName = controllerName;
-            _maxTemperature = maxTemperature;
+            _maxValue = maxValue;
         }
 
         public void CheckValue(object sender, PropertyChangeEvent e)
         {
-            if (e.NewValue > _maxTemperature)
-                throw new PropertyVetoException(String.Format("{0}: Se ha vetado un cambio de {1} de {2} a {3} porque sobrepasa el máximo de {4}.", _instName, e.Property, e.OldValue, e.NewValue, _maxTemperature));
+            if (e.NewValue > _maxValue)
+                throw new Exception(String.Format("{0}: Se ha vetado un cambio de {1} de {2} a {3} porque sobrepasa el máximo de {4}.", _instName, e.Property, e.OldValue, e.NewValue, _maxValue));
         }
     }
 }

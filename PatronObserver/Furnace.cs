@@ -10,7 +10,8 @@ namespace PatronObserver1
     {
         public event PropertyEventHandler PropertyEvent;
         private const string PROP_TEMP = "Temperature";
-        
+        private const string PROP_HUMIDITY = "Humidity";
+
         private int _temperature;
         public int Temperature
         {
@@ -21,20 +22,29 @@ namespace PatronObserver1
 
             set
             {
-                try
-                {
-                    OnTemperatureChanged(new PropertyChangeEvent(PROP_TEMP, _temperature, value));
 
-                    _temperature = value;
-                }
-                catch (PropertyVetoException e)
-                {
-                    Console.WriteLine(e.Message);
-                }
+                OnPropertyChanged(new PropertyChangeEvent(PROP_TEMP, _temperature, value));
+                _temperature = value;
+
             }
         }
 
-        protected virtual void OnTemperatureChanged(PropertyChangeEvent e)
+        private int _humidity;
+        public int Humidity
+        {
+            get
+            {
+                return _humidity;
+            }
+
+            set
+            {
+                OnPropertyChanged(new PropertyChangeEvent(PROP_HUMIDITY, _humidity, value));
+                _humidity = value;
+            }
+        }
+
+        protected virtual void OnPropertyChanged(PropertyChangeEvent e)
         {
             var handler = PropertyEvent;
             if (null != handler)

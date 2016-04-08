@@ -44,6 +44,5 @@ namespace PatronObserver2
         {
             Console.WriteLine("{2}: The current location is {0}, {1}", value.Latitude, value.Longitude, this.Name);
         }
-
     }
 }

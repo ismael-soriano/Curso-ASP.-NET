@@ -13,32 +13,58 @@ namespace PatronObserver1
         {
             Furnace furnace = new Furnace();
 
-            var controller = new Controller("Controller 1", 150);
-            var controller2 = new Controller("Controller 2", 200);
+            var tempController = new Controller("Temperature Controller 1", 150);
+            var tempController2 = new Controller("Temperature Controller 2", 200);
+            var humidityController = new Controller("Humidity Controller", 40);
 
-            furnace.PropertyEvent += controller.CheckValue;
+            furnace.PropertyEvent += tempController.CheckValue;
+            furnace.PropertyEvent += humidityController.CheckValue;
             ChangeTemperature(furnace, 120);
+            ChangeHumidity(furnace, 10);
             ChangeTemperature(furnace, 200);
-            furnace.PropertyEvent -= controller.CheckValue;
+            ChangeHumidity(furnace, 30);
+            furnace.PropertyEvent -= tempController.CheckValue;
 
-            furnace.PropertyEvent += controller2.CheckValue;
+            furnace.PropertyEvent += tempController2.CheckValue;
             ChangeTemperature(furnace, 300);
+            ChangeHumidity(furnace, 120);
 
-            furnace.PropertyEvent += controller.CheckValue;
+            furnace.PropertyEvent += tempController.CheckValue;
             ChangeTemperature(furnace, 800);
+            ChangeHumidity(furnace, 200);
 
             Console.ReadLine();
         }
 
         private static void ChangeTemperature(Furnace furnace, int temperature)
         {
-            furnace.Temperature = temperature;
-            PrintStatus(furnace);
+            try
+            {
+                furnace.Temperature = temperature;
+                PrintStatus(furnace);
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e.Message);
+            }
+        }
+
+        private static void ChangeHumidity(Furnace furnace, int humidity)
+        {
+            try
+            {
+                furnace.Humidity = humidity;
+                PrintStatus(furnace);
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e.Message);
+            }
         }
 
         private static void PrintStatus(Furnace furnace)
         {
-            Console.WriteLine(String.Format("Temperatura Horno: {0}\n", furnace.Temperature));
+            Console.WriteLine(String.Format("Horno: {0} Cº, Humedad {1}%\n", furnace.Temperature, furnace.Humidity));
         }
     }
 }
