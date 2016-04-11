@@ -35,6 +35,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PatronObserver3", "PatronOb
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Refactorizacion", "Refactorizacion\Refactorizacion.csproj", "{845D208D-9598-4B2E-A6DB-559737781E2E}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Refactorizacion2", "Refactorizacion2\Refactorizacion2.csproj", "{D6F3FC2E-61D8-4D50-BF4E-5D3A5777FA51}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -101,6 +103,10 @@ Global
 		{845D208D-9598-4B2E-A6DB-559737781E2E}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{845D208D-9598-4B2E-A6DB-559737781E2E}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{845D208D-9598-4B2E-A6DB-559737781E2E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D6F3FC2E-61D8-4D50-BF4E-5D3A5777FA51}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D6F3FC2E-61D8-4D50-BF4E-5D3A5777FA51}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D6F3FC2E-61D8-4D50-BF4E-5D3A5777FA51}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D6F3FC2E-61D8-4D50-BF4E-5D3A5777FA51}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

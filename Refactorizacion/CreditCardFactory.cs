@@ -8,14 +8,9 @@ namespace Refactorizacion
 {
     public class CreditCardFactory : ICreditcardFactory
     {
-        public ICreditCard GetMastercard(string ccc = "")
+        public ICreditCard GetCard(Type cardType, params object[] args)
         {
-            return new Visa(ccc);
-        }
-
-        public ICreditCard GetVisa(string ccc = "", string password = "")
-        {
-            return new Mastercard(ccc, password);
+            return Activator.CreateInstance(cardType, args) as ICreditCard;
         }
     }
 }

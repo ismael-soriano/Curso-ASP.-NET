@@ -14,17 +14,17 @@ namespace Refactorizacion
             var dataphone = new Dataphone();
             Pay(dataphone, 1000);
 
-            dataphone.InsertCard(factory.GetMastercard("202020"));
+            dataphone.InsertCard(factory.GetCard(typeof(Mastercard), new object[] { "202020" }));
             Pay(dataphone, 1000);
 
-            dataphone.InsertCard(factory.GetVisa("22222", "abc"));
+            dataphone.InsertCard(factory.GetCard(typeof(Visa), new object[] { "22222", "abc" }));
             Pay(dataphone, 1000);
             Pay(dataphone, 23);
 
             Console.ReadLine();
         }
 
-        public static void Pay(Dataphone dataphone, int amount)
+        public static void Pay(IDataphone dataphone, int amount)
         {
             try
             {

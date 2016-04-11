@@ -6,8 +6,9 @@ using System.Threading.Tasks;
 
 namespace Refactorizacion
 {
-    public interface ICreditcardFactory
+    interface IDataphone
     {
-        ICreditCard GetCard(Type cardType, params object[] args);
+        void InsertCard(ICreditCard card);
+        void Pay(int amount);
     }
 }

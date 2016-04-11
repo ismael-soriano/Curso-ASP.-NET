@@ -10,18 +10,20 @@ namespace Refactorizacion
     {
         const int maxImport = 23;
         public string Ccc { get; private set; }
+        public string Password { get; private set; }
 
-        public Visa(string ccc)
+        public Visa(string ccc, string password)
         {
             Ccc = ccc;
+            Password = password;
         }
 
         public void Pay(int amount)
         {
-            Pagar(amount, Ccc);
+            Consignar(amount, Ccc, Password);
         }
 
-        private void Pagar(int importe, string CCC)
+        private void Consignar(int importe, string CCC, string contraseña)
         {
             if (importe > maxImport)
                 throw new Exception(String.Format("El importe {0} es mayor que {1}.", importe, maxImport));

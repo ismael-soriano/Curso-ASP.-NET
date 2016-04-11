@@ -4,10 +4,10 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Refactorizacion
+namespace Refactorizacion2
 {
-    public interface ICreditcardFactory
+    public class Message
     {
-        ICreditCard GetCard(Type cardType, params object[] args);
+        public string Text { get; set; }
     }
 }
