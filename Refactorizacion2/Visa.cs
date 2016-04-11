@@ -11,7 +11,7 @@ namespace Refactorizacion2
         public Visa()
         {
             TipoTarjeta = TipoTarjeta.Visa;
-            PrivateKey = "111";
+            PrivateKey = "1111";
         }
     }
 }

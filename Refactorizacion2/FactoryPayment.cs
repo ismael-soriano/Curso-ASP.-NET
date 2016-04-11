@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Refactorizacion2
 {
-    class FactoryPayment
+    public class FactoryPayment
     {
         public static IPayment GetPayment(Card card)
         {
