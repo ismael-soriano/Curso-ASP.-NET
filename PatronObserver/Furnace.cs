@@ -50,5 +50,10 @@ namespace PatronObserver1
             if (null != handler)
                 handler(this, e);
         }
+
+        public override string ToString()
+        {
+            return String.Format("Horno: {0} Cº, Humedad {1}%\n", Temperature, Humidity);
+        }
     }
 }

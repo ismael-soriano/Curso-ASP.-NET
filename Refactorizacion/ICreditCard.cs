@@ -8,6 +8,6 @@ namespace Refactorizacion
 {
     public interface ICreditCard
     {
-        void Pay(int import);
+        void Pay(int amount);
     }
 }

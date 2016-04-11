@@ -8,12 +8,12 @@ namespace Refactorizacion
 {
     public class CreditCardFactory : ICreditcardFactory
     {
-        public ICreditCard GetVisa(string ccc = "")
+        public ICreditCard GetMastercard(string ccc = "")
         {
             return new Visa(ccc);
         }
 
-        public ICreditCard GetMastercard(string ccc = "", string password = "")
+        public ICreditCard GetVisa(string ccc = "", string password = "")
         {
             return new Mastercard(ccc, password);
         }

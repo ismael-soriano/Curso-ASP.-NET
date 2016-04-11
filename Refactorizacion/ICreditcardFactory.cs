@@ -8,7 +8,7 @@ namespace Refactorizacion
 {
     public interface ICreditcardFactory
     {
-        ICreditCard GetVisa(params object[] cardData);
-        ICreditCard GetMastercard(params object[] cardData);
+        ICreditCard GetMastercard(string ccc);
+        ICreditCard GetVisa(string ccc, string password);
     }
 }

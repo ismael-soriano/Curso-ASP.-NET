@@ -18,9 +18,9 @@ namespace Refactorizacion
             Password = password;
         }
 
-        public void Pay(int import)
+        public void Pay(int amount)
         {
-            Consignar(1000, Ccc, Password);
+            Consignar(amount, Ccc, Password);
         }
 
         private void Consignar(int importe, string CCC, string contraseña)

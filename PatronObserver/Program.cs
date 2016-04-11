@@ -21,17 +21,22 @@ namespace PatronObserver1
             furnace.PropertyEvent += humidityController.CheckValue;
             ChangeTemperature(furnace, 120);
             ChangeHumidity(furnace, 10);
+            PrintStatus(furnace);
+
             ChangeTemperature(furnace, 200);
             ChangeHumidity(furnace, 30);
+            PrintStatus(furnace);
             furnace.PropertyEvent -= tempController.CheckValue;
 
             furnace.PropertyEvent += tempController2.CheckValue;
             ChangeTemperature(furnace, 300);
             ChangeHumidity(furnace, 120);
+            PrintStatus(furnace);
 
             furnace.PropertyEvent += tempController.CheckValue;
             ChangeTemperature(furnace, 800);
             ChangeHumidity(furnace, 200);
+            PrintStatus(furnace);
 
             Console.ReadLine();
         }
@@ -41,7 +46,6 @@ namespace PatronObserver1
             try
             {
                 furnace.Temperature = temperature;
-                PrintStatus(furnace);
             }
             catch (Exception e)
             {
@@ -54,7 +58,6 @@ namespace PatronObserver1
             try
             {
                 furnace.Humidity = humidity;
-                PrintStatus(furnace);
             }
             catch (Exception e)
             {
@@ -64,7 +67,7 @@ namespace PatronObserver1
 
         private static void PrintStatus(Furnace furnace)
         {
-            Console.WriteLine(String.Format("Horno: {0} Cº, Humedad {1}%\n", furnace.Temperature, furnace.Humidity));
+            Console.WriteLine(furnace.ToString());
         }
     }
 }

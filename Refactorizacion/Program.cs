@@ -11,21 +11,29 @@ namespace Refactorizacion
         static void Main(string[] args)
         {
             ICreditcardFactory factory = new CreditCardFactory();
-            Pay(factory.GetMastercard("202020"), 1000);
-            Pay(factory.GetVisa("22222", "abc"), 1000);
+            var dataphone = new Dataphone();
+            Pay(dataphone, 1000);
+
+            dataphone.InsertCard(factory.GetMastercard("202020"));
+            Pay(dataphone, 1000);
+
+            dataphone.InsertCard(factory.GetVisa("22222", "abc"));
+            Pay(dataphone, 1000);
+            Pay(dataphone, 23);
 
             Console.ReadLine();
         }
 
-        public static void Pay(ICreditCard card, int quantity)
+        public static void Pay(Dataphone dataphone, int amount)
         {
             try
             {
-                card.Pay(quantity);
+                dataphone.Pay(amount);
+                Console.WriteLine(String.Format("El pago de {0} se ha realizado con exito.", amount));
             }
             catch (Exception e)
             {
-                Console.WriteLine(e.Message);
+                Console.WriteLine(String.Format("El pago no ha podido realizarse porque: {0}", e.Message));
             }
         }
     }

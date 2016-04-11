@@ -16,9 +16,9 @@ namespace Refactorizacion
             Ccc = ccc;
         }
 
-        public void Pay(int import)
+        public void Pay(int amount)
         {
-            Pagar(1000, Ccc);
+            Pagar(amount, Ccc);
         }
 
         private void Pagar(int importe, string CCC)
