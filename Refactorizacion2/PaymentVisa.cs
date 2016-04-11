@@ -28,7 +28,7 @@ namespace Refactorizacion2
             if (!VerifyAmount(amount))
                 return new Message() { Text = "No tiene saldo." };
 
-            return new Message() { Text = "Operación aceptada" };
+            return new Message() { Text = "Operación aceptada." };
         }
     }
 }
