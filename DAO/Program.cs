@@ -15,12 +15,14 @@ namespace DAO
         static int Main(string[] args)
         {
             if (null == args)
+            {
                 throw new ArgumentNullException("args");
+            }
 
             var sql = "insert into [Table](Name) Values(@name)";
-            return Db.Execute(sql, new List<DbParameter>()
+            return Db.Execute(sql, new Dictionary<string,object>()
             {
-                HelperDb.GetParameter("@name", args[0])
+                {"@name", args[0]}
             });
         }
     }

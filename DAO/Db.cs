@@ -12,7 +12,7 @@ namespace DAO
 {
     public class Db
     {
-        public static int Execute(string queryString, List<DbParameter> parameters = null)
+        public static int Execute(string queryString, Dictionary<string, object> parameters = null)
         {
             if (string.IsNullOrEmpty(queryString))
             {
@@ -20,28 +20,24 @@ namespace DAO
             }
 
             using (var connection = HelperDb.GetConnection())
-            using (DbCommand command = HelperDb.GetCommand())
+            using (var command = HelperDb.GetCommand())
             {
                 connection.Open();
-                PrepareCommand(command, queryString, parameters);
                 command.Connection = connection;
+                command.CommandText = queryString;
+                MapDictionaryToParameters(command, parameters);
                 return command.ExecuteNonQuery();
             }
         }
 
-        private static void PrepareCommand(DbCommand command, string queryString, List<DbParameter> parameters)
-        {
-            command.CommandText = queryString;
-            BindParams(command, parameters);
-        }
-
-        private static void BindParams(DbCommand command, List<DbParameter> parameters)
+        private static void MapDictionaryToParameters(DbCommand command, Dictionary<string, object> parameters)
         {
             if (null != parameters)
             {
                 foreach (var item in parameters)
                 {
-                    command.Parameters.Add(item);
+                    var param = HelperDb.GetParameter(item.Key, item.Value);
+                    command.Parameters.Add(param);
                 }
             }
         }
