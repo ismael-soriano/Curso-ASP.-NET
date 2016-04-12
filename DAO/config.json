@@ -1,3 +1,4 @@
 ﻿{
-	connectionType: "odbc"
+	connectionType: 'sql',
+	connectionString: 'Data Source=(LocalDB)\\v11.0;Initial Catalog=curso#;Integrated Security=true'
 }

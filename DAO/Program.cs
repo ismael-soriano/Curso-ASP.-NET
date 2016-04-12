@@ -14,7 +14,9 @@ namespace DAO
     {
         static void Main(string[] args)
         {
-            var connection = CreateConnectionDb.GetConnection(Config.Instance.ConnectionType);
+            var sql = "insert into [Table](Name) Values('Pedro')";
+            Db.Execute(sql);
+            Console.ReadLine();
         }
     }
 }

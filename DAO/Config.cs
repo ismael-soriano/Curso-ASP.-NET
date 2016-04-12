@@ -11,6 +11,8 @@ namespace DAO
 {
     public class Config
     {
+        const string CONFIG_FILE = "config.json";
+        const string PROPERTY_CONNECTION_TYPE = "ConnectionType";
         static readonly Config _instance;
         public static Config Instance { get {
             return _instance;
@@ -20,6 +22,9 @@ namespace DAO
         [JsonConverter(typeof(StringEnumConverter))]
         public ConnectionType ConnectionType { get; private set; }
 
+        [JsonProperty("connectionString", Required = Required.Always)]
+        public string ConnectionString { get; private set; }
+
         static Config()
         {
             _instance = getInstance();
@@ -28,7 +33,7 @@ namespace DAO
         private Config() {}
 
         public static Config getInstance() {
-            var json = File.ReadAllText("config.json");
+            var json = File.ReadAllText(CONFIG_FILE);
             return JsonConvert.DeserializeObject<Config>(json);
         }
 
