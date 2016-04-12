@@ -12,11 +12,16 @@ namespace DAO
 {
     class Program
     {
-        static void Main(string[] args)
+        static int Main(string[] args)
         {
-            var sql = "insert into [Table](Name) Values('Pedro')";
-            Db.Execute(sql);
-            Console.ReadLine();
+            if (null == args)
+                throw new ArgumentNullException("args");
+
+            var sql = "insert into [Table](Name) Values(@name)";
+            return Db.Execute(sql, new List<DbParameter>()
+            {
+                HelperDb.GetParameter("@name", args[0])
+            });
         }
     }
 }
