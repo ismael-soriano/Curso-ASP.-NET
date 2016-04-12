@@ -54,6 +54,10 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\DAO\DAO.csproj">
+      <Project>{62b62742-5d28-43f3-8fdf-300142a24d9c}</Project>
+      <Name>DAO</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Refactorizacion2\Refactorizacion2.csproj">
       <Project>{d6f3fc2e-61d8-4d50-bf4e-5d3a5777fa51}</Project>
       <Name>Refactorizacion2</Name>
