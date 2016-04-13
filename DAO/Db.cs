@@ -12,34 +12,21 @@ namespace DAO
 {
     public class Db
     {
-        public static int Execute(string queryString, Dictionary<string, object> parameters = null)
+        public static int Execute(IDbCommand command)
         {
-            if (string.IsNullOrEmpty(queryString))
+            if (null == command)
             {
-                throw new ArgumentNullException("queryString");
+                throw new ArgumentNullException("command");
             }
 
-            using (var connection = HelperDb.GetConnection())
-            using (var command = HelperDb.GetCommand())
+            using (command.Connection)
+            using (command)
             {
-                connection.Open();
-                command.Connection = connection;
-                command.CommandText = queryString;
-                MapDictionaryToParameters(command, parameters);
+                command.Connection.Open();
                 return command.ExecuteNonQuery();
             }
         }
 
-        private static void MapDictionaryToParameters(DbCommand command, Dictionary<string, object> parameters)
-        {
-            if (null != parameters)
-            {
-                foreach (var item in parameters)
-                {
-                    var param = HelperDb.GetParameter(item.Key, item.Value);
-                    command.Parameters.Add(param);
-                }
-            }
-        }
+
     }
 }
