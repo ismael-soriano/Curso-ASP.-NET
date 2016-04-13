@@ -19,8 +19,8 @@ namespace DAO
                 throw new ArgumentNullException("command");
             }
 
-            using (command.Connection)
             using (command)
+            using (command.Connection)
             {
                 command.Connection.Open();
                 return command.ExecuteNonQuery();

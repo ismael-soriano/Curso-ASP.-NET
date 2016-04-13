@@ -25,7 +25,7 @@ namespace DAO
             {
                 {"@name", args[0]}
             };
-            var command = HelperDb.GetCommand(sql, HelperDb.GetConnection(), parameters);
+            var command = HelperDb.GetCommand(HelperDb.GetConnection(), sql, parameters);
 
             return Db.Execute(command);
         }

@@ -12,7 +12,7 @@ namespace DAO
 {
     public static class HelperDb
     {
-        public static DbConnection GetConnection()
+        public static IDbConnection GetConnection()
         {
 
             if (Config.Instance.ConnectionType == ConnectionType.Odbc)
@@ -23,17 +23,18 @@ namespace DAO
             return new SqlConnection(Config.Instance.ConnectionString);
         }
 
-        public static IDbCommand GetCommand(string sql, IDbConnection connection, Dictionary<string, object> parameters = null)
+        public static IDbCommand GetCommand(IDbConnection connection, string sql, Dictionary<string, object> parameters = null)
         {
+            if (null == connection)
+            {
+                throw new ArgumentNullException("connection");
+            }
+
             if (null == sql)
             {
                 throw new ArgumentNullException("sql");
             }
 
-            if (null == connection)
-            {
-                throw new ArgumentNullException("connection");
-            }
 
             IDbCommand command = CreateCommand();
             command.CommandText = sql;
