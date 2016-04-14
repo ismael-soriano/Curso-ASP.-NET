@@ -6,7 +6,8 @@ using System.Threading.Tasks;
 
 namespace Blog.Models
 {
-    public class User : EntityBaseWithDescription
+    public class EntityBaseWithDescription : EntityBase
     {
+        public string Description { get; set; }
     }
 }

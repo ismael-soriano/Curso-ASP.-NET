@@ -5,14 +5,21 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Data.Entity;
 using Blog.Configurations;
+using Blog.Models;
 
-namespace Blog
+namespace Blog.Context
 {
-    public class ContextBlog : DbContext
+    public class ContextBlog : DbContext, IContextBlog
     {
-        public DbSet<Post> Posts { get; set; }
+        public ContextBlog()
+        {
+            this.Configuration.LazyLoadingEnabled = true;
+        }
+
+        public IDbSet<Post> Posts { get; set; }
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
+            modelBuilder.Properties<string>().Configure(c => c.HasColumnType("varchar"));
             modelBuilder.Configurations.Add(new UserConfiguration());
             modelBuilder.Configurations.Add(new CommentConfiguration());
             modelBuilder.Configurations.Add(new TagConfiguration());

@@ -4,12 +4,10 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Blog
+namespace Blog.Models
 {
-    public class Comment
+    public class Comment : EntityBaseWithDescription
     {
-        public int Id { get; set; }
-        public string Text { get; set; }
         public User User { get; set; }
     }
 }

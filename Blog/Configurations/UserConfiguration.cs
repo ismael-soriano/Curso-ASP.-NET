@@ -9,12 +9,12 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 namespace Blog.Configurations
 {
-    public class UserConfiguration : EntityTypeConfiguration<Blog.User>
+    public class UserConfiguration : EntityTypeConfiguration<Blog.Models.User>
     {
         public UserConfiguration()
         {
             this.Property(c => c.Id).HasDatabaseGeneratedOption(DatabaseGeneratedOption.Identity);
-            this.Property(c => c.name).HasMaxLength(50).IsUnicode(false).IsRequired();
+            this.Property(c => c.Description).IsRequired();
         }
     }
 }

@@ -3,6 +3,9 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Blog.Models;
+using Blog.Context;
+using Blog.Services;
 
 namespace Blog
 {
@@ -12,23 +15,43 @@ namespace Blog
         {
             using (var ctx = new ContextBlog())
             {
-                var x = ctx.Database.Connection.ConnectionString;
-                var tags = new List<Tag>()
-                {
-                    new Tag() { Name = "asdf"},
-                    new Tag() { Name = "asdf1"}
-                };
+                var postDAO = new PostService(ctx);
+                postDAO.Add(GeneratePost());
 
-                var comments = new List<Comment>()
-                {
-                    new Comment() { Text = "asdasdasd", User = new User() { name = "patata"} },
-                    new Comment() { Text = "uiggfgjjgd", User = new User() { name = "tomate"} }
-                };
+                // Bueno
+                //var result = post.Comments.Select(c => c.User.name);
 
-                var post = new Post() { Comments = comments, Tags = tags };
-                ctx.Posts.Add(post);
-                ctx.SaveChanges();
+                // Malo
+                //foreach (var comment in post.Comments)
+                //{
+                //    Console.WriteLine(comment.User.name);
+                //}
+
+
             }
+        }
+
+        public static Post GeneratePost()
+        {
+            return new Post() { Comments = GenerateComments(), Tags = GenerateTags() };
+        }
+
+        public static List<Comment> GenerateComments()
+        {
+            return new List<Comment>()
+                {
+                    new Comment() { Description = "asdasdasd", User = new User() { Description = "patata"} },
+                    new Comment() { Description = "uiggfgjjgd", User = new User() { Description = "tomate"} }
+                };
+        }
+
+        public static List<Tag> GenerateTags()
+        {
+            return new List<Tag>()
+                {
+                    new Tag() { Description = "asdf"},
+                    new Tag() { Description = "asdf1"}
+                };
         }
     }
 }

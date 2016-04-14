@@ -54,13 +54,13 @@
     <Compile Include="Configurations\PostConfiguration.cs" />
     <Compile Include="Configurations\TagConfiguration.cs" />
     <Compile Include="Configurations\UserConfiguration.cs" />
-    <Compile Include="Migrations\201604141009595_InitialCreate.cs" />
-    <Compile Include="Migrations\201604141009595_InitialCreate.Designer.cs">
-      <DependentUpon>201604141009595_InitialCreate.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\Configuration.cs" />
+    <Compile Include="Context\IContextBlog.cs" />
+    <Compile Include="Services\IPostService.cs" />
+    <Compile Include="Services\PostService.cs" />
     <Compile Include="Models\Comment.cs" />
     <Compile Include="Context\ContextBlog.cs" />
+    <Compile Include="Models\EntityBase.cs" />
+    <Compile Include="Models\EntityBaseWithDescription.cs" />
     <Compile Include="Models\Post.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -72,11 +72,6 @@
       <SubType>Designer</SubType>
     </None>
     <None Include="packages.config" />
-  </ItemGroup>
-  <ItemGroup>
-    <EmbeddedResource Include="Migrations\201604141009595_InitialCreate.resx">
-      <DependentUpon>201604141009595_InitialCreate.cs</DependentUpon>
-    </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

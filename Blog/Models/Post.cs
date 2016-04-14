@@ -4,12 +4,17 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Blog
+namespace Blog.Models
 {
-    public class Post
+    public class Post : EntityBaseWithDescription
     {
-        public int Id { get; set; }
-        public List<Tag> Tags { get; set; }
-        public List<Comment> Comments { get; set; }
+        public virtual ICollection<Tag> Tags { get; set; }
+        public virtual ICollection<Comment> Comments { get; set; }
+
+        public Post()
+        {
+            Tags = new List<Tag>();
+            Comments = new List<Comment>();
+        }
     }
 }
