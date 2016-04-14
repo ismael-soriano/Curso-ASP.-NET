@@ -3,9 +3,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using System.Data.Entity;
 
-namespace EF
+namespace ORM
 {
     class Program
     {
@@ -14,7 +13,7 @@ namespace EF
             // Insert
             using (var ctx = new ContextCurso())
             {
-
+                var x = ctx.Database.Connection.ConnectionString;
                 var customer = new Customer()
                 {
                     Name = "Pedro",
@@ -24,7 +23,7 @@ namespace EF
                 ctx.SaveChanges();
             }
 
-            // Update
+           // Update
             using (var ctx = new ContextCurso())
             {
                 var customer = ctx.Customers.Where(c => c.Id == 1).FirstOrDefault();
@@ -36,12 +35,12 @@ namespace EF
             }
 
             // Update optimo
-            /*using (var ctx = new ContextCurso())
-            {
-                var customer = new Customer() { Id = 1, Nif = "nif" };
-                ctx.Entry(customer).State = EntityState.Modified;
-                ctx.SaveChanges();
-            }*/
+            //using (var ctx = new ContextCurso())
+            //{
+            //    var customer = new Customer() { Id = 1, Nif = "nif" };
+            //    ctx.Entry(customer).State = EntityState.Modified;
+            //    ctx.SaveChanges();
+            //}
 
             // Delete
             using (var ctx = new ContextCurso())
@@ -55,11 +54,11 @@ namespace EF
             }
 
             // Delete optimo
-            /*using (var ctx = new ContextCurso())
-            {
-                ctx.Entry<Customer>(new Customer() { Id = 1 }).State = EntityState.Deleted;
-                ctx.SaveChanges();
-            }*/
+            //using (var ctx = new ContextCurso())
+            //{
+            //    ctx.Entry<Customer>(new Customer() { Id = 1 }).State = EntityState.Deleted;
+            //    ctx.SaveChanges();
+            //}
 
             // Select
             using (var ctx = new ContextCurso())
