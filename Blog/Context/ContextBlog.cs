@@ -6,6 +6,8 @@ using System.Threading.Tasks;
 using System.Data.Entity;
 using Blog.Configurations;
 using Blog.Models;
+using System.Reflection;
+using Blog.Configurations;
 
 namespace Blog.Context
 {
@@ -20,10 +22,7 @@ namespace Blog.Context
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
             modelBuilder.Properties<string>().Configure(c => c.HasColumnType("varchar"));
-            modelBuilder.Configurations.Add(new UserConfiguration());
-            modelBuilder.Configurations.Add(new CommentConfiguration());
-            modelBuilder.Configurations.Add(new TagConfiguration());
-            modelBuilder.Configurations.Add(new PostConfiguration());
+            modelBuilder.Configurations.AddFromAssembly(typeof(PostConfiguration).Assembly);
             base.OnModelCreating(modelBuilder);
         }
     }
